@@ -1,0 +1,30 @@
+<h1>Listing Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for document <- @documents do %>
+    <tr>
+      <td><%= document.name %></td>
+      <td><%= document.title %></td>
+      <td><%= document.content %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.document_path(@conn, :show, document) %></span>
+        <span><%= link "Edit", to: Routes.document_path(@conn, :edit, document) %></span>
+        <span><%= link "Delete", to: Routes.document_path(@conn, :delete, document), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Document", to: Routes.document_path(@conn, :new) %></span>
